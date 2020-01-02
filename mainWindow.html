@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AnimeFM</title>
+    <style>
+    .logo{
+    height: 120px;
+    background-color: rgba(255,255,255,0.4);
+    padding: 5px;
+    }
+    .ibg{
+        background-color: seashell;
+        margin-top: 20px;
+        margin-left: 100px;
+        margin-right: 100px;
+        border-radius: 10px;
+    }
+    iframe{
+        margin-top: 20px;
+        width: 100%;
+        min-height: 300px;
+        border: 0px;
+        overflow: hidden;
+        position: relative;
+        left: 49px;
+
+    }
+    </style>
+</head>
+<body>
+    <center>
+        <img src="https://cdn.asthriona.com/logo%20animeFM.png" alt="" class="logo" >
+        <div class="ibg">
+            <iframe src="https://player.cloudsdalegroup.com/animefm" scrolling="no" frameborder="0"></iframe>
+        </div>
+    </center>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script>
+        checkStation();
+setInterval(function (){
+    checkStation();
+}, 10000);
+function checkStation(){
+var xhr = new XMLHttpRequest()
+var xhr = new XMLHttpRequest()
+            xhr.open("GET", "https://broadcaster.animefm.co/api/nowplaying/3", true)
+            xhr.onreadystatechange = function(channel) {
+                if(xhr.readyState == 4) {
+                var data = JSON.parse(xhr.responseText)
+                var elm  = document.getElementById("info")
+                if(data["station"] === null){
+                    console.log("API OFFLINE :/")
+                }else{
+                    console.log(data)
+                    document.body.style.backgroundImage = "url('"+data.now_playing.song.art+"')";
+                                        
+                }
+
+            }
+        } 
+            xhr.send();
+}
+    </script>
+</body>
+</html>
